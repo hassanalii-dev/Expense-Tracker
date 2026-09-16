@@ -20,65 +20,56 @@ function ExpenseChart() {
     0
   );
 
+  const chartColors =
+    totalIncome < totalExpenses
+      ? ["#16a34a", "#dc2626"]
+      : ["#16a34a", "#16a34a"];
+
   const options = {
     chart: {
-      height: 350,
       type: "bar",
       toolbar: {
         show: true,
+      },
+      animations: {
+        enabled: true,
+        easing: "easeinout",
+        speed: 600,
       },
     },
 
     plotOptions: {
       bar: {
-        borderRadius: 10,
+        borderRadius: 8,
+        columnWidth: "40%",
+        distributed: true,
         dataLabels: {
           position: "top",
         },
       },
     },
 
-    colors: ["#16a34a", "#dc2626"],
+    colors: chartColors,
 
     dataLabels: {
       enabled: true,
-      formatter: function (val) {
-        return "Rs. " + Number(val).toLocaleString();
+      formatter: function (value) {
+        return "Rs. " + Number(value).toLocaleString();
       },
       offsetY: -20,
       style: {
         fontSize: "12px",
-        colors: ["#304758"],
+        colors: ["#374151"],
       },
     },
 
     xaxis: {
       categories: ["Income", "Expenses"],
-      position: "bottom",
-
       axisBorder: {
         show: false,
       },
-
       axisTicks: {
         show: false,
-      },
-
-      crosshairs: {
-        fill: {
-          type: "gradient",
-          gradient: {
-            colorFrom: "#D8E3F0",
-            colorTo: "#BED1E6",
-            stops: [0, 100],
-            opacityFrom: 0.4,
-            opacityTo: 0.5,
-          },
-        },
-      },
-
-      tooltip: {
-        enabled: true,
       },
     },
 
@@ -86,30 +77,26 @@ function ExpenseChart() {
       axisBorder: {
         show: false,
       },
-
       axisTicks: {
         show: false,
       },
-
       labels: {
-        formatter: function (val) {
-          return "Rs. " + Number(val).toLocaleString();
+        formatter: function (value) {
+          return "Rs. " + Number(value).toLocaleString();
         },
       },
     },
 
     tooltip: {
       y: {
-        formatter: function (val) {
-          return "Rs. " + Number(val).toLocaleString();
+        formatter: function (value) {
+          return "Rs. " + Number(value).toLocaleString();
         },
       },
     },
 
     title: {
       text: "Income vs Expenses",
-      floating: true,
-      offsetY: 0,
       align: "center",
       style: {
         color: "#444",
@@ -125,13 +112,13 @@ function ExpenseChart() {
   ];
 
   return (
-    <div className="mt-8 rounded-2xl bg-white p-5 shadow-lg">
+    <div className="mt-6 rounded-2xl bg-white p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:mt-8 sm:p-5">
       {totalIncome === 0 && totalExpenses === 0 ? (
-        <p className="py-10 text-center text-gray-500">
+        <p className="py-10 text-center text-sm text-gray-500 sm:text-base">
           Add income or expenses to see the chart
         </p>
       ) : (
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
           <Chart
             options={options}
             series={series}

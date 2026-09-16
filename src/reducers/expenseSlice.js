@@ -11,13 +11,11 @@ const expenseSlice = createSlice({
 
   reducers: {
     addIncome: (state, action) => {
-      const income = {
+      state.income.push({
         id: nanoid(),
         title: action.payload.title,
         amount: Number(action.payload.amount),
-      };
-
-      state.income.push(income);
+      });
     },
 
     removeIncome: (state, action) => {
@@ -27,13 +25,11 @@ const expenseSlice = createSlice({
     },
 
     addExpense: (state, action) => {
-      const expense = {
+      state.expenses.push({
         id: nanoid(),
         title: action.payload.title,
         amount: Number(action.payload.amount),
-      };
-
-      state.expenses.push(expense);
+      });
     },
 
     removeExpense: (state, action) => {
