@@ -23,7 +23,7 @@ function ExpenseChart() {
   const chartColors =
     totalIncome < totalExpenses
       ? ["#16a34a", "#dc2626"]
-      : ["#16a34a", "#16a34a"];
+      : ["#16a34b", "#16a34a"];
 
   const options = {
     chart: {
@@ -112,7 +112,7 @@ function ExpenseChart() {
   ];
 
   return (
-    <div className="mt-6 rounded-2xl bg-white p-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:mt-8 sm:p-5">
+    <div className="mt-6 rounded-2xl bg-white p-3 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8 sm:p-5">
       {totalIncome === 0 && totalExpenses === 0 ? (
         <p className="py-10 text-center text-sm text-gray-500 sm:text-base">
           Add income or expenses to see the chart

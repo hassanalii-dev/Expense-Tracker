@@ -38,7 +38,7 @@ function App() {
         </header>
 
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-8 lg:grid-cols-3">
-          <div className="rounded-2xl bg-green-600 p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <div className="rounded-2xl bg-green-600 p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
             <p className="text-sm">Total Income</p>
 
             <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
@@ -46,7 +46,7 @@ function App() {
             </h2>
           </div>
 
-          <div className="rounded-2xl bg-red-600 p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <div className="rounded-2xl bg-red-600 p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl">
             <p className="text-sm">Total Expenses</p>
 
             <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
@@ -55,7 +55,7 @@ function App() {
           </div>
 
           <div
-            className={`rounded-2xl p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:col-span-2 lg:col-span-1 ${
+            className={`rounded-2xl p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:col-span-2 lg:col-span-1 ${
               balance >= 0
                 ? "bg-blue-600"
                 : "bg-blue-600"

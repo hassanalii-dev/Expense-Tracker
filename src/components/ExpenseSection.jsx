@@ -24,8 +24,8 @@ function ExpenseSection() {
 
     dispatch(
       addExpense({
-        title: title.trim(),
-        amount: amount,
+        title,
+        amount,
       })
     );
 
@@ -33,111 +33,83 @@ function ExpenseSection() {
     setAmount("");
   };
 
-  const totalExpenses = expenses.reduce(
-    (total, item) => total + item.amount,
-    0
-  );
-
   return (
-    <section className="rounded-2xl border border-red-200 bg-white p-5 shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
-
-      <div className="mb-5 animate-[fadeIn_0.5s_ease-out]">
+    <div className="rounded-2xl border border-red-200 bg-white p-6 shadow-lg transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl">
+      <div className="mb-6">
         <h2 className="text-2xl font-bold text-red-600">
           Expenses
         </h2>
 
-        <p className="text-sm text-gray-500">
+        <p className="mt-1 text-sm text-gray-500">
           Add your expenses
         </p>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-3 animate-[slideUp_0.6s_ease-out]"
-      >
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           placeholder="Expense title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all duration-300 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+          className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-100"
         />
 
         <input
           type="number"
-          placeholder="Amount"
+          placeholder="Expense amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition-all duration-300 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+          className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-100"
         />
 
         <button
           type="submit"
-          className="w-full rounded-lg bg-red-600 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-700 hover:shadow-md active:translate-y-0"
+          className="w-full rounded-xl bg-red-600 py-3 font-semibold text-white transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-[0.99]"
         >
           Add Expense
         </button>
       </form>
 
-      <div className="mt-6 overflow-x-auto animate-[fadeIn_0.8s_ease-out]">
-        <table className="w-full min-w-[400px] text-left">
-          <thead>
-            <tr className="border-b bg-red-50">
-              <th className="px-3 py-3">Title</th>
-              <th className="px-3 py-3">Amount</th>
-              <th className="px-3 py-3">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {expenses.length === 0 ? (
-              <tr>
-                <td
-                  colSpan="3"
-                  className="py-6 text-center text-gray-500"
-                >
-                </td>
-              </tr>
-            ) : (
-              expenses.map((item) => (
-                <tr
-                  key={item.id}
-                  className="border-b transition-all duration-200"
-                >
-                  <td className="px-3 py-3">
-                    {item.title}
-                  </td>
-
-                  <td className="px-3 py-3 font-semibold text-red-600">
-                    Rs. {item.amount.toLocaleString()}
-                  </td>
-
-                  <td className="px-3 py-3">
-                    <button
-                      onClick={() =>
-                        dispatch(removeExpense(item.id))
-                      }
-                      className="rounded-md bg-red-500 px-3 py-2 text-sm text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-600 hover:shadow-md active:scale-95"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="mt-5 rounded-lg bg-red-600 p-4 text-white transition-all duration-300 hover:shadow-lg animate-[slideUp_0.8s_ease-out]">
-        <p className="text-sm">Total Expenses</p>
-
-        <h3 className="text-2xl font-bold">
-          Rs. {totalExpenses.toLocaleString()}
+      <div className="mt-7">
+        <h3 className="mb-3 text-lg font-semibold text-gray-800">
+          Expense List
         </h3>
-      </div>
 
-    </section>
+        <div className="space-y-3">
+          {expenses.length === 0 ? (
+            <p className="rounded-xl bg-gray-50 p-4 text-center text-sm text-gray-500">
+              No expenses added yet.
+            </p>
+          ) : (
+            expenses.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between gap-3 rounded-xl bg-red-50 p-4 transition-shadow duration-200 hover:shadow-sm"
+              >
+                <div>
+                  <p className="font-semibold text-gray-800">
+                    {item.title}
+                  </p>
+
+                  <p className="text-sm text-red-600">
+                    Rs. {item.amount.toLocaleString()}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() =>
+                    dispatch(removeExpense(item.id))
+                  }
+                  className="rounded-lg bg-red-100 px-3 py-2 text-sm font-medium text-red-600 transition-all duration-200 hover:bg-red-600 hover:text-white active:scale-[0.98]"
+                >
+                  Delete
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
