@@ -47,6 +47,79 @@ function ExpenseChart() {
       },
     },
 
+    responsive: [
+      {
+        breakpoint: 640,
+        options: {
+          chart: {
+            height: 300,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 6,
+              columnWidth: "45%",
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            offsetY: -18,
+            style: {
+              fontSize: "10px",
+            },
+          },
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: "10px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "10px",
+              },
+              formatter: function (value) {
+                return "Rs. " + Number(value).toLocaleString();
+              },
+            },
+          },
+        },
+      },
+      {
+        breakpoint: 400,
+        options: {
+          chart: {
+            height: 270,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 5,
+              columnWidth: "50%",
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            labels: {
+              rotate: -45,
+              style: {
+                fontSize: "9px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "9px",
+              },
+            },
+          },
+        },
+      },
+    ],
+
     plotOptions: {
       bar: {
         borderRadius: 8,
@@ -127,18 +200,18 @@ function ExpenseChart() {
   ];
 
   return (
-    <div className="mt-6 rounded-2xl bg-white p-3 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8 sm:p-5">
+    <div className="mt-6 w-full min-w-0 rounded-2xl bg-white p-2 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8 sm:p-5">
       {totalIncome === 0 && totalExpenses === 0 ? (
         <p className="py-10 text-center text-sm text-gray-500 sm:text-base">
           Add income or expenses to see the chart
         </p>
       ) : (
-        <div className="w-full overflow-hidden">
+        <div className="w-full min-w-0 overflow-hidden">
           <Chart
             options={options}
             series={series}
             type="bar"
-            height={350}
+            height="100%"
             width="100%"
           />
         </div>
