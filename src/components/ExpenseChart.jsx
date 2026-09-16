@@ -20,10 +20,19 @@ function ExpenseChart() {
     0
   );
 
-  const chartColors =
-    totalIncome < totalExpenses
-      ? ["#16a34a", "#dc2626"]
-      : ["#16a34b", "#16a34a"];
+  const categories = [
+    "Food",
+    "Rent",
+    "Clothes",
+    "Transport",
+    "Bills",
+  ];
+
+  const categoryTotals = categories.map((category) => {
+    return expenses
+      .filter((item) => item.category === category)
+      .reduce((total, item) => total + item.amount, 0);
+  });
 
   const options = {
     chart: {
@@ -49,7 +58,13 @@ function ExpenseChart() {
       },
     },
 
-    colors: chartColors,
+    colors: [
+      "#f97316",
+      "#3b82f6",
+      "#ec4899",
+      "#8b5cf6",
+      "#eab308",
+    ],
 
     dataLabels: {
       enabled: true,
@@ -64,7 +79,7 @@ function ExpenseChart() {
     },
 
     xaxis: {
-      categories: ["Income", "Expenses"],
+      categories: categories,
       axisBorder: {
         show: false,
       },
@@ -96,7 +111,7 @@ function ExpenseChart() {
     },
 
     title: {
-      text: "Income vs Expenses",
+      text: "Expenses by Category",
       align: "center",
       style: {
         color: "#444",
@@ -106,8 +121,8 @@ function ExpenseChart() {
 
   const series = [
     {
-      name: "Amount",
-      data: [totalIncome, totalExpenses],
+      name: "Expense",
+      data: categoryTotals,
     },
   ];
 

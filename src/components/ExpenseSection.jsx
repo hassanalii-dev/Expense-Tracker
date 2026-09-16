@@ -8,6 +8,7 @@ import {
 function ExpenseSection() {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("Food");
 
   const dispatch = useDispatch();
 
@@ -26,11 +27,13 @@ function ExpenseSection() {
       addExpense({
         title,
         amount,
+        category,
       })
     );
 
     setTitle("");
     setAmount("");
+    setCategory("Food");
   };
 
   return (
@@ -62,6 +65,18 @@ function ExpenseSection() {
           className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-100"
         />
 
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+        >
+          <option value="Food"> Food</option>
+          <option value="Rent">Rent</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Transport">Transport</option>
+          <option value="Bills">Bills</option>
+        </select>
+
         <button
           type="submit"
           className="w-full rounded-xl bg-red-600 py-3 font-semibold text-white transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-[0.99]"
@@ -89,6 +104,10 @@ function ExpenseSection() {
                 <div>
                   <p className="font-semibold text-gray-800">
                     {item.title}
+                  </p>
+
+                  <p className="mt-1 text-xs text-gray-500">
+                    {item.category}
                   </p>
 
                   <p className="text-sm text-red-600">

@@ -29,6 +29,7 @@ const expenseSlice = createSlice({
         id: nanoid(),
         title: action.payload.title,
         amount: Number(action.payload.amount),
+        category: action.payload.category,
       });
     },
 
