@@ -47,79 +47,6 @@ function ExpenseChart() {
       },
     },
 
-    responsive: [
-      {
-        breakpoint: 640,
-        options: {
-          chart: {
-            height: 300,
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 6,
-              columnWidth: "45%",
-            },
-          },
-          dataLabels: {
-            enabled: true,
-            offsetY: -18,
-            style: {
-              fontSize: "10px",
-            },
-          },
-          xaxis: {
-            labels: {
-              style: {
-                fontSize: "10px",
-              },
-            },
-          },
-          yaxis: {
-            labels: {
-              style: {
-                fontSize: "10px",
-              },
-              formatter: function (value) {
-                return "Rs. " + Number(value).toLocaleString();
-              },
-            },
-          },
-        },
-      },
-      {
-        breakpoint: 400,
-        options: {
-          chart: {
-            height: 270,
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 5,
-              columnWidth: "50%",
-            },
-          },
-          dataLabels: {
-            enabled: false,
-          },
-          xaxis: {
-            labels: {
-              rotate: -45,
-              style: {
-                fontSize: "9px",
-              },
-            },
-          },
-          yaxis: {
-            labels: {
-              style: {
-                fontSize: "9px",
-              },
-            },
-          },
-        },
-      },
-    ],
-
     plotOptions: {
       bar: {
         borderRadius: 8,
@@ -159,6 +86,11 @@ function ExpenseChart() {
       axisTicks: {
         show: false,
       },
+      labels: {
+        style: {
+          fontSize: "12px",
+        },
+      },
     },
 
     yaxis: {
@@ -190,6 +122,76 @@ function ExpenseChart() {
         color: "#444",
       },
     },
+
+    responsive: [
+      {
+        breakpoint: 640,
+        options: {
+          chart: {
+            height: 300,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 6,
+              columnWidth: "45%",
+            },
+          },
+          dataLabels: {
+            enabled: true,
+            offsetY: -18,
+            style: {
+              fontSize: "10px",
+            },
+          },
+          xaxis: {
+            labels: {
+              style: {
+                fontSize: "10px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "9px",
+              },
+            },
+          },
+        },
+      },
+      {
+        breakpoint: 400,
+        options: {
+          chart: {
+            height: 270,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 5,
+              columnWidth: "50%",
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            labels: {
+              rotate: -45,
+              style: {
+                fontSize: "9px",
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "8px",
+              },
+            },
+          },
+        },
+      },
+    ],
   };
 
   const series = [
@@ -211,7 +213,7 @@ function ExpenseChart() {
             options={options}
             series={series}
             type="bar"
-            height="100%"
+            height={350}
             width="100%"
           />
         </div>
