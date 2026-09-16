@@ -58,7 +58,7 @@ function App() {
             className={`rounded-2xl p-5 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:col-span-2 lg:col-span-1 ${
               balance >= 0
                 ? "bg-blue-600"
-                : "bg-orange-600"
+                : "bg-blue-600"
             }`}
           >
             <p className="text-sm">Net Balance</p>
