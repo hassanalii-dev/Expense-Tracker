@@ -38,13 +38,14 @@ function ExpenseChart() {
     chart: {
       type: "bar",
       toolbar: {
-        show: true,
+        show: false,
       },
       animations: {
         enabled: true,
         easing: "easeinout",
         speed: 600,
       },
+      background: "transparent",
     },
 
     plotOptions: {
@@ -59,11 +60,11 @@ function ExpenseChart() {
     },
 
     colors: [
-      "#f97316",
-      "#3b82f6",
-      "#ec4899",
-      "#8b5cf6",
-      "#eab308",
+      "#f97316", // Orange
+      "#3b82f6", // Blue
+      "#ec4899", // Pink
+      "#8b5cf6", // Purple
+      "#eab308", // Yellow
     ],
 
     dataLabels: {
@@ -74,7 +75,7 @@ function ExpenseChart() {
       offsetY: -20,
       style: {
         fontSize: "12px",
-        colors: ["#374151"],
+        colors: ["#94a3b8"],
       },
     },
 
@@ -89,6 +90,7 @@ function ExpenseChart() {
       labels: {
         style: {
           fontSize: "12px",
+          colors: "#94a3b8",
         },
       },
     },
@@ -101,13 +103,21 @@ function ExpenseChart() {
         show: false,
       },
       labels: {
+        style: {
+          colors: "#94a3b8",
+        },
         formatter: function (value) {
           return "Rs. " + Number(value).toLocaleString();
         },
       },
     },
 
+    grid: {
+      borderColor: "#1e293b",
+    },
+
     tooltip: {
+      theme: "dark",
       y: {
         formatter: function (value) {
           return "Rs. " + Number(value).toLocaleString();
@@ -119,8 +129,14 @@ function ExpenseChart() {
       text: "Expenses by Category",
       align: "center",
       style: {
-        color: "#444",
+        color: "#f1f5f9",
+        fontSize: "16px",
+        fontWeight: "600",
       },
+    },
+
+    legend: {
+      show: false,
     },
 
     responsive: [
@@ -130,63 +146,9 @@ function ExpenseChart() {
           chart: {
             height: 300,
           },
-          plotOptions: {
-            bar: {
-              borderRadius: 6,
-              columnWidth: "45%",
-            },
-          },
           dataLabels: {
-            enabled: true,
-            offsetY: -18,
             style: {
               fontSize: "10px",
-            },
-          },
-          xaxis: {
-            labels: {
-              style: {
-                fontSize: "10px",
-              },
-            },
-          },
-          yaxis: {
-            labels: {
-              style: {
-                fontSize: "9px",
-              },
-            },
-          },
-        },
-      },
-      {
-        breakpoint: 400,
-        options: {
-          chart: {
-            height: 270,
-          },
-          plotOptions: {
-            bar: {
-              borderRadius: 5,
-              columnWidth: "50%",
-            },
-          },
-          dataLabels: {
-            enabled: false,
-          },
-          xaxis: {
-            labels: {
-              rotate: -45,
-              style: {
-                fontSize: "9px",
-              },
-            },
-          },
-          yaxis: {
-            labels: {
-              style: {
-                fontSize: "8px",
-              },
             },
           },
         },
@@ -202,9 +164,9 @@ function ExpenseChart() {
   ];
 
   return (
-    <div className="mt-6 w-full min-w-0 rounded-2xl bg-white p-2 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:mt-8 sm:p-5">
+    <div className="mt-6 w-full min-w-0 rounded-2xl border border-slate-800 bg-slate-900 p-2 shadow-xl transition-all duration-300 sm:mt-8 sm:p-5">
       {totalIncome === 0 && totalExpenses === 0 ? (
-        <p className="py-10 text-center text-sm text-gray-500 sm:text-base">
+        <p className="py-10 text-center text-sm text-slate-500 sm:text-base">
           Add income or expenses to see the chart
         </p>
       ) : (

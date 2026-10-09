@@ -25,7 +25,7 @@ function IncomeSection() {
     dispatch(
       addIncome({
         title,
-        amount,
+        amount: Number(amount),
       })
     );
 
@@ -34,13 +34,12 @@ function IncomeSection() {
   };
 
   return (
-    <div className="rounded-2xl border border-emerald-200 bg-white p-6 shadow-lg transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-xl">
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl transition-all duration-300 ease-out hover:-translate-y-0.5">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-emerald-600">
+        <h2 className="text-2xl font-bold text-emerald-400">
           Income
         </h2>
-
-        <p className="mt-1 text-sm text-gray-500">
+        <p className="mt-1 text-sm text-slate-400">
           Add your income sources
         </p>
       </div>
@@ -51,7 +50,7 @@ function IncomeSection() {
           placeholder="Income title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+          className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-slate-100 placeholder-slate-500 outline-none transition-all duration-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
         />
 
         <input
@@ -59,39 +58,38 @@ function IncomeSection() {
           placeholder="Income amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
-          className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition-all duration-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+          className="w-full rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-slate-100 placeholder-slate-500 outline-none transition-all duration-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
         />
 
         <button
           type="submit"
-          className="w-full rounded-xl bg-emerald-600 py-3 font-semibold text-white transition-all duration-200 hover:bg-emerald-700 hover:shadow-md active:scale-[0.99]"
+          className="w-full rounded-xl bg-emerald-600 py-3 font-semibold text-white transition-all duration-200 hover:bg-emerald-500 hover:shadow-lg hover:shadow-emerald-600/20 active:scale-[0.99]"
         >
           Add Income
         </button>
       </form>
 
       <div className="mt-7">
-        <h3 className="mb-3 text-lg font-semibold text-gray-800">
+        <h3 className="mb-3 text-lg font-semibold text-slate-200">
           Income List
         </h3>
 
         <div className="space-y-3">
           {income.length === 0 ? (
-            <p className="rounded-xl bg-gray-50 p-4 text-center text-sm text-gray-500">
+            <p className="rounded-xl border border-slate-800 bg-slate-800/50 p-4 text-center text-sm text-slate-500">
               No income added yet.
             </p>
           ) : (
             income.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between gap-3 rounded-xl bg-emerald-50 p-4 transition-shadow duration-200 hover:shadow-sm"
+                className="flex items-center justify-between gap-3 rounded-xl border border-emerald-500/10 bg-emerald-950/20 p-4 transition-all duration-200 hover:border-emerald-500/30"
               >
                 <div>
-                  <p className="font-semibold text-gray-800">
+                  <p className="font-semibold text-slate-200">
                     {item.title}
                   </p>
-
-                  <p className="text-sm text-emerald-600">
+                  <p className="text-sm font-medium text-emerald-400">
                     Rs. {item.amount.toLocaleString()}
                   </p>
                 </div>
@@ -100,7 +98,7 @@ function IncomeSection() {
                   onClick={() =>
                     dispatch(removeIncome(item.id))
                   }
-                  className="rounded-lg bg-red-100 px-3 py-2 text-sm font-medium text-red-600 transition-all duration-200 hover:bg-red-600 hover:text-white active:scale-[0.98]"
+                  className="rounded-lg bg-rose-500/10 px-3 py-2 text-sm font-medium text-rose-400 transition-all duration-200 hover:bg-rose-600 hover:text-white active:scale-[0.98]"
                 >
                   Delete
                 </button>
